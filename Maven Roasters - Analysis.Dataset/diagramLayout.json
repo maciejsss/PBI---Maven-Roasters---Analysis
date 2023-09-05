@@ -45,12 +45,12 @@
             "height": 196.34554365207626,
             "width": 234
           },
-          "zIndex": 7
+          "zIndex": 6
         },
         {
           "location": {
             "x": 764.47741052994616,
-            "y": 349.97619101958975
+            "y": 367.57448142281396
           },
           "nodeIndex": "Food Inventory",
           "nodeLineageTag": "d9409ce1-cd1d-4313-b87d-e13fb9b75c2d",
@@ -58,17 +58,17 @@
             "height": 301,
             "width": 234
           },
-          "zIndex": 6
+          "zIndex": 7
         },
         {
           "location": {
-            "x": 854,
-            "y": 0
+            "x": 842.68681331221308,
+            "y": 11.313186687786985
           },
           "nodeIndex": "Product",
           "nodeLineageTag": "de9f93b6-754d-49b5-a7d0-70b166c3e999",
           "size": {
-            "height": 203.20940278226692,
+            "height": 200.69536129609202,
             "width": 234
           },
           "zIndex": 3
