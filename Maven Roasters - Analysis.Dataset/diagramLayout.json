@@ -16,10 +16,10 @@
           "nodeIndex": "Calendar",
           "nodeLineageTag": "69d7ae7c-e3b5-48da-86b7-6a1f4bdbe428",
           "size": {
-            "height": 300,
+            "height": 201.9523820391795,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 1
         },
         {
           "location": {
@@ -29,54 +29,54 @@
           "nodeIndex": "Customer",
           "nodeLineageTag": "f12e2c4a-7c1a-4463-803e-78541e0cb4b0",
           "size": {
-            "height": 296,
+            "height": 201.72344426844177,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 2
         },
         {
           "location": {
             "x": 568,
-            "y": 38
+            "y": 6.5744814228139319
           },
           "nodeIndex": "Employee",
           "nodeLineageTag": "1b59adbf-a46c-4cf5-973a-46217ad33420",
           "size": {
-            "height": 224,
+            "height": 196.34554365207626,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 7
         },
         {
           "location": {
-            "x": 852,
-            "y": 38
+            "x": 764.47741052994616,
+            "y": 349.97619101958975
           },
           "nodeIndex": "Food Inventory",
           "nodeLineageTag": "d9409ce1-cd1d-4313-b87d-e13fb9b75c2d",
           "size": {
-            "height": 224,
+            "height": 301,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 6
         },
         {
           "location": {
-            "x": 1136,
+            "x": 854,
             "y": 0
           },
           "nodeIndex": "Product",
           "nodeLineageTag": "de9f93b6-754d-49b5-a7d0-70b166c3e999",
           "size": {
-            "height": 300,
+            "height": 203.20940278226692,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 3
         },
         {
           "location": {
-            "x": 1420,
-            "y": 0
+            "x": 349.94750399775381,
+            "y": 363.57448142281407
           },
           "nodeIndex": "Sales",
           "nodeLineageTag": "f3f15483-f945-4e80-b812-87c5d5503a18",
@@ -84,24 +84,24 @@
             "height": 300,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 4
         },
         {
           "location": {
-            "x": 1704,
+            "x": 1136,
             "y": 0
           },
           "nodeIndex": "Store",
           "nodeLineageTag": "d2f2f5a7-29fc-4b4b-9bb1-128c51044666",
           "size": {
-            "height": 300,
+            "height": 203.20940278226692,
             "width": 234
           },
-          "zIndex": 0
+          "zIndex": 5
         }
       ],
       "name": "All tables",
-      "zoomValue": 100,
+      "zoomValue": 79.553182037699784,
       "pinKeyFieldsToTop": false,
       "showExtraHeaderInfo": false,
       "hideKeyFieldsWhenCollapsed": false,

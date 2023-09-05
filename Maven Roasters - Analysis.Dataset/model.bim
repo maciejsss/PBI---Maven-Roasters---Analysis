@@ -58,6 +58,64 @@
         "folder": "Dimensions"
       }
     ],
+    "relationships": [
+      {
+        "name": "8a01ce91-484f-4f23-9714-5b8ee4be3890",
+        "fromColumn": "transaction_date",
+        "fromTable": "Sales",
+        "toColumn": "Transaction_Date",
+        "toTable": "Calendar"
+      },
+      {
+        "name": "a66d0754-2ec9-4d1f-ad82-06b43b85754c",
+        "fromColumn": "customer_id",
+        "fromTable": "Sales",
+        "toColumn": "customer_id",
+        "toTable": "Customer"
+      },
+      {
+        "name": "ead0a49a-8a5b-4879-a4e5-3598c81a3315",
+        "fromColumn": "staff_id",
+        "fromTable": "Sales",
+        "toColumn": "staff_id",
+        "toTable": "Employee"
+      },
+      {
+        "name": "64e64e8e-1c77-4912-99a1-ca388cd57998",
+        "fromColumn": "product_id",
+        "fromTable": "Sales",
+        "toColumn": "product_id",
+        "toTable": "Product"
+      },
+      {
+        "name": "f6cfe0a5-4434-434c-9bd2-6cd8c4655c11",
+        "fromColumn": "store_id",
+        "fromTable": "Food Inventory",
+        "toColumn": "store_id",
+        "toTable": "Store"
+      },
+      {
+        "name": "8fc974c2-f272-43e9-a908-a531ac5a7c61",
+        "fromColumn": "product_id",
+        "fromTable": "Food Inventory",
+        "toColumn": "product_id",
+        "toTable": "Product"
+      },
+      {
+        "name": "9267c2c2-2812-43bc-b5d8-5009c4dc9ba2",
+        "fromColumn": "transaction_date",
+        "fromTable": "Food Inventory",
+        "toColumn": "Transaction_Date",
+        "toTable": "Calendar"
+      },
+      {
+        "name": "f891d9f0-dd98-4c5e-94a5-7341cddb4f9b",
+        "fromColumn": "store_id",
+        "fromTable": "Sales",
+        "toColumn": "store_id",
+        "toTable": "Store"
+      }
+    ],
     "sourceQueryCulture": "en-US",
     "tables": [
       {
@@ -87,6 +145,7 @@
             ],
             "dataType": "dateTime",
             "formatString": "Long Date",
+            "isKey": true,
             "lineageTag": "1d868383-6eb0-49b1-a1a0-59adb6c740a3",
             "sourceColumn": "Transaction_Date",
             "summarizeBy": "none"
@@ -214,6 +273,7 @@
             "summarizeBy": "none"
           }
         ],
+        "dataCategory": "Time",
         "lineageTag": "69d7ae7c-e3b5-48da-86b7-6a1f4bdbe428",
         "partitions": [
           {
@@ -259,7 +319,7 @@
             "formatString": "0",
             "lineageTag": "1cca6503-f65b-4586-ab47-d22e52d08294",
             "sourceColumn": "customer_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "home_store",
@@ -273,7 +333,7 @@
             "formatString": "0",
             "lineageTag": "0d90d8ff-d206-4b60-9ecc-60c8b858f4e0",
             "sourceColumn": "home_store",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "customer_first-name",
@@ -375,7 +435,7 @@
             "formatString": "0",
             "lineageTag": "d4dba242-1a03-403a-9139-11b3cf59170b",
             "sourceColumn": "birth_year",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           }
         ],
         "lineageTag": "f12e2c4a-7c1a-4463-803e-78541e0cb4b0",
@@ -423,7 +483,7 @@
             "formatString": "0",
             "lineageTag": "a2e1704c-e52e-482a-9cb2-e5f589df2949",
             "sourceColumn": "staff_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "first_name",
@@ -541,7 +601,7 @@
             "formatString": "0",
             "lineageTag": "52b5ea6b-1774-4b79-a803-967d7212b762",
             "sourceColumn": "store_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "baked_date",
@@ -591,7 +651,7 @@
             "formatString": "0",
             "lineageTag": "cb892f08-f5a8-42f6-a8dc-a4ee9c1c664a",
             "sourceColumn": "product_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "quantity_start_of_day",
@@ -717,7 +777,7 @@
             "formatString": "0",
             "lineageTag": "3a38a5d8-f784-40d5-87fe-c52bafb0e48f",
             "sourceColumn": "store_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "staff_id",
@@ -731,7 +791,7 @@
             "formatString": "0",
             "lineageTag": "5826b18b-24e1-4bb1-8493-bde6b8f87e94",
             "sourceColumn": "staff_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "customer_id",
@@ -745,7 +805,7 @@
             "formatString": "0",
             "lineageTag": "e60820e3-e3d5-41d8-846c-d4b74de3f718",
             "sourceColumn": "customer_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "instore_yn",
@@ -800,7 +860,7 @@
             "formatString": "0",
             "lineageTag": "5cc96ad4-223a-4c5e-95d7-f67932f615de",
             "sourceColumn": "product_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "quantity_sold",
@@ -892,7 +952,7 @@
             "formatString": "0",
             "lineageTag": "7eb03924-3b90-48f7-94b0-12497eaf8348",
             "sourceColumn": "product_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "product_group",
@@ -1108,7 +1168,7 @@
             "formatString": "0",
             "lineageTag": "36c850f5-700b-47c9-a302-1eaf4c68db89",
             "sourceColumn": "store_id",
-            "summarizeBy": "sum"
+            "summarizeBy": "none"
           },
           {
             "name": "store_type",
