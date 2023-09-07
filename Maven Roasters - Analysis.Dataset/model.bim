@@ -16,7 +16,7 @@
       },
       {
         "name": "PBI_QueryOrder",
-        "value": "[\"Calendar\",\"Customer\",\"Employee\",\"Food Inventory\",\"Sales\",\"Product\",\"Store\"]"
+        "value": "[\"Calendar\",\"Customer\",\"Employee\",\"Food Inventory\",\"Sales\",\"Product\",\"Store\",\"_Measures\"]"
       }
     ],
     "culture": "en-US",
@@ -223,14 +223,14 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "7773a992-459d-4077-9e7b-1f2807b50970",
             "sourceColumn": "Quarter_ID",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "Quarter_Name",
@@ -250,14 +250,14 @@
             "annotations": [
               {
                 "name": "SummarizationSetBy",
-                "value": "Automatic"
+                "value": "User"
               }
             ],
             "dataType": "int64",
             "formatString": "0",
             "lineageTag": "d85ca876-3b6d-4ae1-a250-ccd719729889",
             "sourceColumn": "Year_ID",
-            "summarizeBy": "count"
+            "summarizeBy": "none"
           },
           {
             "name": "Week_Year",
@@ -1326,6 +1326,130 @@
                 "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"store_id\", Int64.Type}, {\"store_type\", type text}, {\"store_square_feet\", Int64.Type}, {\"store_address\", type text}, {\"store_city\", type text}, {\"store_state_province\", type text}, {\"store_postal_code\", Int64.Type}, {\"store_longitude\", type number}, {\"store_latitude\", type number}, {\"manager\", Int64.Type}, {\"Neighorhood\", type text}})",
                 "in",
                 "    #\"Changed Type\""
+              ],
+              "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "_Measures",
+        "annotations": [
+          {
+            "name": "PBI_ResultType",
+            "value": "Table"
+          }
+        ],
+        "lineageTag": "000d0f68-5074-4152-875d-61848d76c3fa",
+        "measures": [
+          {
+            "name": "Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    SUMX(",
+              "        Sales,",
+              "        Sales[quantity_sold] * Sales[unit_price]",
+              "    )"
+            ],
+            "lineageTag": "9cd8df06-c524-4130-bfdf-e628ccca2b73"
+          },
+          {
+            "name": "Cost",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    SUMX(",
+              "        Sales,",
+              "        Sales[quantity_sold] * ",
+              "        RELATED(",
+              "            'Product'[current_cost]",
+              "        )",
+              "    )"
+            ],
+            "lineageTag": "c06d1edb-9e0f-4d28-b0d1-9ffe6411e1bf"
+          },
+          {
+            "name": "Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    [Sales] - [Cost]"
+            ],
+            "lineageTag": "0601c8cc-7a83-44f5-a0f2-961a51a2e2fc"
+          },
+          {
+            "name": "Orders by Females",
+            "expression": [
+              "",
+              "    VAR __TotalOrdersFemale = ",
+              "        CALCULATE(",
+              "            SUM(",
+              "                Sales[quantity_sold]",
+              "            ),",
+              "            FILTER(",
+              "                Customer,",
+              "                Customer[gender] = \"F\"",
+              "            )",
+              "        )",
+              "RETURN",
+              "    __TotalOrdersFemale"
+            ],
+            "formatString": "0",
+            "lineageTag": "673c3ff2-e29a-4ba6-83ef-82b0cc375594"
+          },
+          {
+            "name": "Customers #",
+            "expression": [
+              "",
+              "    DISTINCTCOUNT(",
+              "        Customer[customer_id]",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "f2b59d9a-264e-40cc-94c1-c2b7d6254d4e"
+          },
+          {
+            "name": "Customers #2",
+            "expression": [
+              "",
+              "    COUNTROWS(",
+              "        VALUES(",
+              "            Customer[customer_id]",
+              "        )",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "f9b58718-7a32-44fa-a1e9-7b8594076f55"
+          }
+        ],
+        "partitions": [
+          {
+            "name": "_Measures",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "let",
+                "    Source = Table.FromRows(Json.Document(Binary.Decompress(Binary.FromText(\"i44FAA==\", BinaryEncoding.Base64), Compression.Deflate)), let _t = ((type nullable text) meta [Serialized.Text = true]) in type table [Column1 = _t]),",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(Source,{{\"Column1\", type text}}),",
+                "    #\"Removed Columns\" = Table.RemoveColumns(#\"Changed Type\",{\"Column1\"})",
+                "in",
+                "    #\"Removed Columns\""
               ],
               "type": "m"
             }
