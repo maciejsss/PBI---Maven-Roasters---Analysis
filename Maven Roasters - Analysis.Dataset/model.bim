@@ -1,5 +1,5 @@
 {
-  "compatibilityLevel": 1550,
+  "compatibilityLevel": 1567,
   "model": {
     "annotations": [
       {
@@ -436,6 +436,39 @@
             "lineageTag": "d4dba242-1a03-403a-9139-11b3cf59170b",
             "sourceColumn": "birth_year",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Age",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "FLOOR(",
+              "    DIVIDE(",
+              "        DATEDIFF(",
+              "            Customer[birthdate],",
+              "            TODAY(),",
+              "            DAY",
+              "        ),",
+              "        365,25",
+              "    ),",
+              "    1",
+              ")"
+            ],
+            "formatString": "0",
+            "lineageTag": "b7b9a299-96bc-4370-8adc-8ccbd2557fa7",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "f12e2c4a-7c1a-4463-803e-78541e0cb4b0",
@@ -905,6 +938,36 @@
             "lineageTag": "5d7ec782-acd0-4b2f-b735-b95416fe68a1",
             "sourceColumn": "promo_item_yn",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Time Group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "UnderlyingDateTimeDataType",
+                "value": "Time"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "DataType"
+              }
+            ],
+            "dataType": "dateTime",
+            "expression": [
+              "",
+              "    FLOOR(",
+              "        Sales[transaction_time],",
+              "        \"1:00\"",
+              "    )"
+            ],
+            "formatString": "Long Time",
+            "lineageTag": "23a8ae9a-8ea6-4be3-b67a-0230e3996a9d",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "f3f15483-f945-4e80-b812-87c5d5503a18",
@@ -1436,6 +1499,17 @@
             ],
             "formatString": "0",
             "lineageTag": "f9b58718-7a32-44fa-a1e9-7b8594076f55"
+          },
+          {
+            "name": "Employees #",
+            "expression": [
+              "",
+              "    COUNTROWS(",
+              "        Employee",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "11244ddd-57f8-4b25-bc1b-767b3382f77e"
           }
         ],
         "partitions": [
