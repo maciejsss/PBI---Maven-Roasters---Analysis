@@ -8,7 +8,7 @@
       },
       {
         "name": "PBIDesktopVersion",
-        "value": "2.120.963.0 (23.08)"
+        "value": "2.121.644.0 (23.09)"
       },
       {
         "name": "PBI_ProTooling",
@@ -17,6 +17,10 @@
       {
         "name": "PBI_QueryOrder",
         "value": "[\"Calendar\",\"Customer\",\"Employee\",\"Food Inventory\",\"Sales\",\"Product\",\"Store\",\"_Measures\"]"
+      },
+      {
+        "name": "__TEdtr",
+        "value": "1"
       }
     ],
     "culture": "en-US",
@@ -121,10 +125,6 @@
       {
         "name": "Calendar",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -271,6 +271,60 @@
             "lineageTag": "fa3479fc-c2f4-4f9a-bff9-3a76efbb047b",
             "sourceColumn": "Week_Year",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Year_Half",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "    SWITCH(",
+              "        TRUE(),",
+              "        MONTH('Calendar'[Transaction_Date]) < 7, \"1H\",",
+              "        MONTH('Calendar'[Transaction_Date]) >= 7, \"2H\",",
+              "        \"-\"",
+              "    )"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "1ecb7d60-c6e1-4ee9-981b-cc2b93d740e3",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Year_Quarter",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "    VAR __Q1 = 'Calendar'[Month_ID] IN {1,2,3}",
+              "    VAR __Q2 = 'Calendar'[Month_ID] IN {4,5,6}",
+              "    VAR __Q3 = 'Calendar'[Month_ID] IN {7,8,9}",
+              "    VAR __Q4 = 'Calendar'[Month_ID] IN {10,11,12}",
+              "",
+              "RETURN",
+              "    SWITCH(",
+              "        TRUE(),",
+              "        __Q1,\"Q1\" & \"-\" & 'Calendar'[Year_ID],",
+              "        __Q2,\"Q2\" & \"-\" & 'Calendar'[Year_ID],",
+              "        __Q3,\"Q3\" & \"-\" & 'Calendar'[Year_ID],",
+              "        __Q4,\"Q4\" & \"-\" & 'Calendar'[Year_ID],",
+              "        \"-\"",
+              "    )"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "fcc484bb-25b2-4eea-994c-de35463e7d50",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "dataCategory": "Time",
@@ -297,10 +351,6 @@
       {
         "name": "Customer",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -495,10 +545,6 @@
         "name": "Employee",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -612,10 +658,6 @@
       {
         "name": "Food Inventory",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -738,10 +780,6 @@
       {
         "name": "Sales",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -968,6 +1006,24 @@
             "lineageTag": "23a8ae9a-8ea6-4be3-b67a-0230e3996a9d",
             "summarizeBy": "none",
             "type": "calculated"
+          },
+          {
+            "name": "Transaction Date",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "    FORMAT(Sales[transaction_date],\"yyyy-mm-dd\")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "07b0bd52-cb92-4368-8d9c-dc108eee7f91",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "f3f15483-f945-4e80-b812-87c5d5503a18",
@@ -993,10 +1049,6 @@
       {
         "name": "Product",
         "annotations": [
-          {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
           {
             "name": "PBI_ResultType",
             "value": "Table"
@@ -1210,10 +1262,6 @@
         "name": "Store",
         "annotations": [
           {
-            "name": "PBI_NavigationStepName",
-            "value": "Navigation"
-          },
-          {
             "name": "PBI_ResultType",
             "value": "Table"
           }
@@ -1413,6 +1461,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Sales",
             "expression": [
               "",
               "    SUMX(",
@@ -1430,15 +1479,17 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Cost",
             "expression": [
               "",
-              "    SUMX(",
-              "        Sales,",
-              "        Sales[quantity_sold] * ",
-              "        RELATED(",
-              "            'Product'[current_cost]",
+              "        SUMX(",
+              "            Sales,",
+              "            Sales[quantity_sold] * ",
+              "            RELATED(",
+              "                'Product'[current_cost]",
+              "            )",
               "        )",
-              "    )"
+              ""
             ],
             "lineageTag": "c06d1edb-9e0f-4d28-b0d1-9ffe6411e1bf"
           },
@@ -1450,14 +1501,16 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Sales",
             "expression": [
               "",
-              "    [Sales] - [Cost]"
+              "    COALESCE([Sales] - [Cost],\"-\")"
             ],
             "lineageTag": "0601c8cc-7a83-44f5-a0f2-961a51a2e2fc"
           },
           {
             "name": "Orders by Females",
+            "displayFolder": "Orders",
             "expression": [
               "",
               "    VAR __TotalOrdersFemale = ",
@@ -1478,6 +1531,7 @@
           },
           {
             "name": "Customers #",
+            "displayFolder": "Counts",
             "expression": [
               "",
               "    DISTINCTCOUNT(",
@@ -1489,6 +1543,7 @@
           },
           {
             "name": "Customers #2",
+            "displayFolder": "Counts",
             "expression": [
               "",
               "    COUNTROWS(",
@@ -1502,6 +1557,7 @@
           },
           {
             "name": "Employees #",
+            "displayFolder": "Counts",
             "expression": [
               "",
               "    COUNTROWS(",
@@ -1510,6 +1566,224 @@
             ],
             "formatString": "0",
             "lineageTag": "11244ddd-57f8-4b25-bc1b-767b3382f77e"
+          },
+          {
+            "name": "Cost Currency",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"pl-PL\"}"
+              }
+            ],
+            "displayFolder": "Cost",
+            "expression": [
+              "",
+              "    ROUND(",
+              "        CURRENCY(",
+              "            [Cost]",
+              "        ),2",
+              "    )",
+              ""
+            ],
+            "formatString": "#,0.###############\\ \"zł\";-#,0.###############\\ \"zł\";#,0.###############\\ \"zł\"",
+            "lineageTag": "b6788996-17fd-4fa9-ab09-182ab663e1c8"
+          },
+          {
+            "name": "Sales PY",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    var __SalesPY =",
+              "        CALCULATE(",
+              "            [Sales],",
+              "            DATEADD('Calendar'[Transaction_Date],-1,YEAR)",
+              "        )",
+              "    var __Result =",
+              "        COALESCE(__SalesPY,\"-\")",
+              "",
+              "    RETURN",
+              "        __Result",
+              "    "
+            ],
+            "lineageTag": "e31f3344-cf1d-40e2-945d-3ba41660e4eb"
+          },
+          {
+            "name": "Store 3 Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],KEEPFILTERS(Store[store_id] = 3)",
+              "    )"
+            ],
+            "lineageTag": "cf2a9f6f-1245-4eab-a1cb-092d655bdc33"
+          },
+          {
+            "name": "Store 5 Profit",
+            "displayFolder": "Profit",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Profit],",
+              "        KEEPFILTERS(Store[store_id] = 5)",
+              "    )"
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "lineageTag": "2d2464b3-c1c5-4321-8365-2ac8a6d6beb7"
+          },
+          {
+            "name": "Store 5 Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],KEEPFILTERS(Store[store_id] = 5)",
+              "    )"
+            ],
+            "lineageTag": "269f7262-caeb-4369-87dd-177ea8a5fa93"
+          },
+          {
+            "name": "Store 8 Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],KEEPFILTERS(Store[store_id] = 8)",
+              "    )"
+            ],
+            "lineageTag": "026b08f0-3d54-4984-a1f7-3e54bb236257"
+          },
+          {
+            "name": "Total Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],REMOVEFILTERS()",
+              "    )"
+            ],
+            "lineageTag": "df86f91c-0586-4b0a-9d5c-58c1f1fc253a"
+          },
+          {
+            "name": "Store 3 % Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    var __StoreNumber = 3",
+              "    var __StoreSales = CALCULATE([Sales],KEEPFILTERS(Store[store_id]=__StoreNumber))",
+              "    var __TotalSales = ",
+              "        CALCULATE([Sales],REMOVEFILTERS())",
+              "    var __Result = ",
+              "        DIVIDE(__StoreSales,__TotalSales)",
+              "RETURN",
+              "    __Result"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "bd78f203-9ed5-4b2c-a42b-690bd6cfb3aa"
+          },
+          {
+            "name": "Store 5 % Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    var __StoreNumber = 5",
+              "    var __StoreSales = CALCULATE([Sales],KEEPFILTERS(Store[store_id]=__StoreNumber))",
+              "    var __TotalSales = ",
+              "        CALCULATE([Sales],REMOVEFILTERS())",
+              "    var __Result = ",
+              "        DIVIDE(__StoreSales,__TotalSales)",
+              "RETURN",
+              "    __Result"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "8f811fb6-c67e-4bf3-965d-6a982a7c088d"
+          },
+          {
+            "name": "Store 8 % Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    var __StoreNumber = 8",
+              "    var __StoreSales = CALCULATE([Sales],KEEPFILTERS(Store[store_id]=__StoreNumber))",
+              "    var __TotalSales = ",
+              "        CALCULATE([Sales],REMOVEFILTERS())",
+              "    var __Result = ",
+              "        DIVIDE(__StoreSales,__TotalSales)",
+              "RETURN",
+              "    __Result"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "6861d5f3-e886-4feb-b623-68ec975805e0"
+          },
+          {
+            "name": "Store 3 Sales 2",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],Store[store_id] = 3",
+              "    )"
+            ],
+            "lineageTag": "a386d336-4ee4-4edb-8d78-553f362b33e9"
+          },
+          {
+            "name": "% of Store Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    VAR __TotalSalesStores =",
+              "        CALCULATE([Sales],REMOVEFILTERS(Store[store_id]))",
+              "    VAR __TotalSalesGroups =",
+              "        CALCULATE([Sales],REMOVEFILTERS('Product'[product_group]))",
+              "    VAR __DivideStores =",
+              "        DIVIDE([Sales],__TotalSalesStores)",
+              "    VAR __DivideGroups =",
+              "        DIVIDE([Sales],__TotalSalesGroups)",
+              "    VAR __Result =",
+              "        IF(",
+              "            ISINSCOPE(Store[store_id]),__DivideStores,__DivideGroups",
+              "        )",
+              "    RETURN",
+              "        __Result"
+            ],
+            "formatString": "0.00%;-0.00%;0.00%",
+            "lineageTag": "ec489a41-a707-45cb-b1a9-52d0681c1249"
           }
         ],
         "partitions": [

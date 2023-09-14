@@ -25,7 +25,26 @@
       "filters": "[]",
       "height": 720.00,
       "name": "ReportSection",
-      "visualContainers": [],
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"6e265d80560c7a8ab025\",\"layouts\":[{\"id\":0,\"position\":{\"x\":113.60281195079087,\"y\":328.4358523725835,\"z\":0,\"width\":965.0615114235501,\"height\":229.45518453427064,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Product.product_group\",\"active\":true},{\"queryRef\":\"Store.store_id\"}],\"Values\":[{\"queryRef\":\"_Measures.Store 3 Sales\"},{\"queryRef\":\"_Measures.Store 5 Sales\"},{\"queryRef\":\"_Measures.Store 8 Sales\"},{\"queryRef\":\"_Measures.Total Sales\"},{\"queryRef\":\"_Measures.Store 3 % Sales\"},{\"queryRef\":\"_Measures.Store 5 % Sales\"},{\"queryRef\":\"_Measures.Store 8 % Sales\"},{\"queryRef\":\"_Measures.% of Store Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Product\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Store\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"product_group\"},\"Name\":\"Product.product_group\",\"NativeReferenceName\":\"product_group\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 3 Sales\"},\"Name\":\"_Measures.Store 3 Sales\",\"NativeReferenceName\":\"Store 3 Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 5 Sales\"},\"Name\":\"_Measures.Store 5 Sales\",\"NativeReferenceName\":\"Store 5 Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 8 Sales\"},\"Name\":\"_Measures.Store 8 Sales\",\"NativeReferenceName\":\"Store 8 Sales\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"store_id\"},\"Name\":\"Store.store_id\",\"NativeReferenceName\":\"store_id\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total Sales\"},\"Name\":\"_Measures.Total Sales\",\"NativeReferenceName\":\"Total Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 3 % Sales\"},\"Name\":\"_Measures.Store 3 % Sales\",\"NativeReferenceName\":\"Store 3 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 5 % Sales\"},\"Name\":\"_Measures.Store 5 % Sales\",\"NativeReferenceName\":\"Store 5 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 8 % Sales\"},\"Name\":\"_Measures.Store 8 % Sales\",\"NativeReferenceName\":\"Store 8 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"% of Store Sales\"},\"Name\":\"_Measures.% of Store Sales\",\"NativeReferenceName\":\"% of Store Sales\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Product.product_group\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Product\"}},\"Property\":\"product_group\"}}],\"isPinned\":true},{\"queryRefs\":[\"Store.store_id\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 229.46,
+          "width": 965.06,
+          "x": 113.60,
+          "y": 328.44,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"ba0174fdd703b7c7acb0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":114,\"y\":25.5,\"width\":965,\"height\":229,\"z\":1,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Sales.store_id\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Sales\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"store_id\"},\"Name\":\"Sales.store_id\",\"NativeReferenceName\":\"store_id\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 229.00,
+          "width": 965.00,
+          "x": 114.00,
+          "y": 25.50,
+          "z": 1.00
+        }
+      ],
       "width": 1280.00
     }
   ]
