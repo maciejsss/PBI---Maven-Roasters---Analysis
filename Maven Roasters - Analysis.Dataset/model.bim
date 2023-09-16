@@ -783,6 +783,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1037,7 +1041,7 @@
                 "let",
                 "    Source = Csv.Document(File.Contents(\"C:\\DANE\\Power BI\\Maven Advanced DAX\\Advanced DAX Data Files\\Sales by Store.csv\"),[Delimiter=\",\", Columns=13, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"transaction_id\", Int64.Type}, {\"transaction_date\", type date}, {\"transaction_time\", type time}, {\"store_id\", Int64.Type}, {\"staff_id\", Int64.Type}, {\"customer_id\", Int64.Type}, {\"instore_yn\", type text}, {\"order\", Int64.Type}, {\"line_item_id\", Int64.Type}, {\"product_id\", Int64.Type}, {\"quantity_sold\", Int64.Type}, {\"unit_price\", type number}, {\"promo_item_yn\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"transaction_date\", type date}, {\"transaction_time\", type time}, {\"store_id\", Int64.Type}, {\"staff_id\", Int64.Type}, {\"customer_id\", Int64.Type}, {\"instore_yn\", type text}, {\"order\", Int64.Type}, {\"line_item_id\", Int64.Type}, {\"product_id\", Int64.Type}, {\"quantity_sold\", Int64.Type}, {\"unit_price\", type number}, {\"promo_item_yn\", type text}, {\"transaction_id\", Int64.Type}})",
                 "in",
                 "    #\"Changed Type\""
               ],
@@ -1052,6 +1056,10 @@
           {
             "name": "PBI_ResultType",
             "value": "Table"
+          },
+          {
+            "name": "PBI_NavigationStepName",
+            "value": "Navigation"
           }
         ],
         "columns": [
@@ -1784,6 +1792,64 @@
             ],
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "ec489a41-a707-45cb-b1a9-52d0681c1249"
+          },
+          {
+            "name": "Sales Cumulative",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],",
+              "        FILTER(",
+              "            ALL('Calendar'[Transaction_Date]),",
+              "            'Calendar'[Transaction_Date] <=  MAX('Calendar'[Transaction_Date])",
+              "        )",
+              "    )"
+            ],
+            "lineageTag": "593a9f82-4681-4162-88b0-4b82927d5e84"
+          },
+          {
+            "name": "Big Orders",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        [Sales],FILTER(Sales,Sales[quantity_sold] > 3)",
+              "    )"
+            ],
+            "lineageTag": "69fe81a6-9297-4c05-bef0-619562fed42b"
+          },
+          {
+            "name": "Big Orders 2",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "var __tab = FILTER(Sales,Sales[quantity_sold] > 3)",
+              "",
+              "RETURN",
+              "    CALCULATE(",
+              "        [Sales],__tab",
+              "    )"
+            ],
+            "lineageTag": "77fd2762-e9ea-41e5-98e6-c0a2413abda7"
           }
         ],
         "partitions": [
@@ -1800,6 +1866,48 @@
                 "    #\"Removed Columns\""
               ],
               "type": "m"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Distinct Products",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "a0d9b31475034db6b5525cd3d37a78c4"
+          }
+        ],
+        "columns": [
+          {
+            "name": "product_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "a40e181b-55a3-4ae7-87e9-3f741635f842",
+            "sourceColumn": "Product[product_id]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "2a3c0235-c60a-4166-bf80-0b19bb942497",
+        "partitions": [
+          {
+            "name": "Distinct Products",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "    VALUES('Product'[product_id])"
+              ],
+              "type": "calculated"
             }
           }
         ]

@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.47\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU08\",\"version\":\"5.47\",\"type\":2}},\"activeSectionIndex\":0,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.47\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU08\",\"version\":\"5.47\",\"type\":2}},\"activeSectionIndex\":1,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -27,22 +27,61 @@
       "name": "ReportSection",
       "visualContainers": [
         {
-          "config": "{\"name\":\"6e265d80560c7a8ab025\",\"layouts\":[{\"id\":0,\"position\":{\"x\":113.60281195079087,\"y\":328.4358523725835,\"z\":0,\"width\":965.0615114235501,\"height\":229.45518453427064,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Product.product_group\",\"active\":true},{\"queryRef\":\"Store.store_id\"}],\"Values\":[{\"queryRef\":\"_Measures.Store 3 Sales\"},{\"queryRef\":\"_Measures.Store 5 Sales\"},{\"queryRef\":\"_Measures.Store 8 Sales\"},{\"queryRef\":\"_Measures.Total Sales\"},{\"queryRef\":\"_Measures.Store 3 % Sales\"},{\"queryRef\":\"_Measures.Store 5 % Sales\"},{\"queryRef\":\"_Measures.Store 8 % Sales\"},{\"queryRef\":\"_Measures.% of Store Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Product\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Store\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"product_group\"},\"Name\":\"Product.product_group\",\"NativeReferenceName\":\"product_group\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 3 Sales\"},\"Name\":\"_Measures.Store 3 Sales\",\"NativeReferenceName\":\"Store 3 Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 5 Sales\"},\"Name\":\"_Measures.Store 5 Sales\",\"NativeReferenceName\":\"Store 5 Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 8 Sales\"},\"Name\":\"_Measures.Store 8 Sales\",\"NativeReferenceName\":\"Store 8 Sales\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"store_id\"},\"Name\":\"Store.store_id\",\"NativeReferenceName\":\"store_id\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total Sales\"},\"Name\":\"_Measures.Total Sales\",\"NativeReferenceName\":\"Total Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 3 % Sales\"},\"Name\":\"_Measures.Store 3 % Sales\",\"NativeReferenceName\":\"Store 3 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 5 % Sales\"},\"Name\":\"_Measures.Store 5 % Sales\",\"NativeReferenceName\":\"Store 5 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 8 % Sales\"},\"Name\":\"_Measures.Store 8 % Sales\",\"NativeReferenceName\":\"Store 8 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"% of Store Sales\"},\"Name\":\"_Measures.% of Store Sales\",\"NativeReferenceName\":\"% of Store Sales\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Product.product_group\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Product\"}},\"Property\":\"product_group\"}}],\"isPinned\":true},{\"queryRefs\":[\"Store.store_id\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
-          "filters": "[]",
-          "height": 229.46,
-          "width": 965.06,
-          "x": 113.60,
-          "y": 328.44,
-          "z": 0.00
-        },
-        {
-          "config": "{\"name\":\"ba0174fdd703b7c7acb0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":114,\"y\":25.5,\"width\":965,\"height\":229,\"z\":1,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Sales.store_id\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Sales\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"store_id\"},\"Name\":\"Sales.store_id\",\"NativeReferenceName\":\"store_id\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "config": "{\"name\":\"3aced465db28924be099\",\"layouts\":[{\"id\":0,\"position\":{\"x\":114,\"y\":280.5,\"width\":965,\"height\":229,\"z\":2000,\"tabOrder\":2000}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Sales Cumulative\"}],\"Rows\":[{\"queryRef\":\"Calendar.Year_ID\",\"active\":true},{\"queryRef\":\"Calendar.Year_Quarter\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0},{\"Name\":\"c\",\"Entity\":\"Calendar\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Sales Cumulative\"},\"Name\":\"_Measures.Sales Cumulative\",\"NativeReferenceName\":\"Sales Cumulative\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year_ID\"},\"Name\":\"Calendar.Year_ID\",\"NativeReferenceName\":\"Year_ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year_Quarter\"},\"Name\":\"Calendar.Year_Quarter\",\"NativeReferenceName\":\"Year_Quarter\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Calendar.Year_ID\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Year_ID\"}}],\"isPinned\":true},{\"queryRefs\":[\"Calendar.Year_Quarter\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"2018L\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"2019L\"}}],\"isToggled\":true}]}}],\"drillFilterOtherVisuals\":true}}",
           "filters": "[]",
           "height": 229.00,
           "width": 965.00,
           "x": 114.00,
-          "y": 25.50,
-          "z": 1.00
+          "y": 280.50,
+          "z": 2000.00
+        },
+        {
+          "config": "{\"name\":\"6e265d80560c7a8ab025\",\"layouts\":[{\"id\":0,\"position\":{\"x\":282.8246013667426,\"y\":14.57858769931663,\"z\":0,\"width\":965.1025056947609,\"height\":138.98253606681854,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Product.product_group\",\"active\":true},{\"queryRef\":\"Store.store_id\"}],\"Values\":[{\"queryRef\":\"_Measures.Store 3 Sales\"},{\"queryRef\":\"_Measures.Store 5 Sales\"},{\"queryRef\":\"_Measures.Store 8 Sales\"},{\"queryRef\":\"_Measures.Total Sales\"},{\"queryRef\":\"_Measures.Store 3 % Sales\"},{\"queryRef\":\"_Measures.Store 5 % Sales\"},{\"queryRef\":\"_Measures.Store 8 % Sales\"},{\"queryRef\":\"_Measures.% of Store Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"p\",\"Entity\":\"Product\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Store\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"product_group\"},\"Name\":\"Product.product_group\",\"NativeReferenceName\":\"product_group\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 3 Sales\"},\"Name\":\"_Measures.Store 3 Sales\",\"NativeReferenceName\":\"Store 3 Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 5 Sales\"},\"Name\":\"_Measures.Store 5 Sales\",\"NativeReferenceName\":\"Store 5 Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 8 Sales\"},\"Name\":\"_Measures.Store 8 Sales\",\"NativeReferenceName\":\"Store 8 Sales\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"store_id\"},\"Name\":\"Store.store_id\",\"NativeReferenceName\":\"store_id\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Total Sales\"},\"Name\":\"_Measures.Total Sales\",\"NativeReferenceName\":\"Total Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 3 % Sales\"},\"Name\":\"_Measures.Store 3 % Sales\",\"NativeReferenceName\":\"Store 3 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 5 % Sales\"},\"Name\":\"_Measures.Store 5 % Sales\",\"NativeReferenceName\":\"Store 5 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Store 8 % Sales\"},\"Name\":\"_Measures.Store 8 % Sales\",\"NativeReferenceName\":\"Store 8 % Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"% of Store Sales\"},\"Name\":\"_Measures.% of Store Sales\",\"NativeReferenceName\":\"% of Store Sales\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Product.product_group\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Product\"}},\"Property\":\"product_group\"}}],\"isPinned\":true},{\"queryRefs\":[\"Store.store_id\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 138.98,
+          "width": 965.10,
+          "x": 282.82,
+          "y": 14.58,
+          "z": 0.00
+        },
+        {
+          "config": "{\"name\":\"b2aadbb00574c1eba203\",\"layouts\":[{\"id\":0,\"position\":{\"x\":114,\"y\":520,\"width\":965,\"height\":200,\"z\":2001,\"tabOrder\":2001}}],\"singleVisual\":{\"visualType\":\"multiRowCard\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Big Orders\"},{\"queryRef\":\"_Measures.Big Orders 2\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Big Orders\"},\"Name\":\"_Measures.Big Orders\",\"NativeReferenceName\":\"Big Orders\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Big Orders 2\"},\"Name\":\"_Measures.Big Orders 2\",\"NativeReferenceName\":\"Big Orders 2\"}],\"OrderBy\":[{\"Direction\":2,\"Expression\":{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Big Orders\"}}}]},\"autoSelectVisualType\":false,\"drillFilterOtherVisuals\":true,\"hasDefaultSort\":true}}",
+          "filters": "[]",
+          "height": 200.00,
+          "width": 965.00,
+          "x": 114.00,
+          "y": 520.00,
+          "z": 2001.00
+        },
+        {
+          "config": "{\"name\":\"ba0174fdd703b7c7acb0\",\"layouts\":[{\"id\":0,\"position\":{\"x\":113.71298405466972,\"y\":25.269552012148825,\"z\":1000,\"width\":965.1025056947609,\"height\":128.29157175398635,\"tabOrder\":1000}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Sales.store_id\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"s\",\"Entity\":\"Sales\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"store_id\"},\"Name\":\"Sales.store_id\",\"NativeReferenceName\":\"store_id\"}]},\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"orientation\":{\"expr\":{\"Literal\":{\"Value\":\"0D\"}}}}}]}}}",
+          "filters": "[]",
+          "height": 128.29,
+          "width": 965.10,
+          "x": 113.71,
+          "y": 25.27,
+          "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 2",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSectiond975a1d4e2056708098a",
+      "ordinal": 1,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"f221fa95e293bb3c1b84\",\"layouts\":[{\"id\":0,\"position\":{\"x\":413.0599848139712,\"y\":170.08352315869402,\"z\":0,\"width\":661.867881548975,\"height\":279.9088838268793,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"tableEx\",\"projections\":{\"Values\":[{\"queryRef\":\"_Measures.Sales\"},{\"queryRef\":\"Product.product_id\"},{\"queryRef\":\"Sales.product_id\"},{\"queryRef\":\"Product.product\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0},{\"Name\":\"p\",\"Entity\":\"Product\",\"Type\":0},{\"Name\":\"s\",\"Entity\":\"Sales\",\"Type\":0}],\"Select\":[{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Sales\"},\"Name\":\"_Measures.Sales\",\"NativeReferenceName\":\"Sales\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"product_id\"},\"Name\":\"Product.product_id\",\"NativeReferenceName\":\"product_id\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"s\"}},\"Property\":\"product_id\"},\"Name\":\"Sales.product_id\",\"NativeReferenceName\":\"product_id1\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"p\"}},\"Property\":\"product\"},\"Name\":\"Product.product\",\"NativeReferenceName\":\"product\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 279.91,
+          "width": 661.87,
+          "x": 413.06,
+          "y": 170.08,
+          "z": 0.00
         }
       ],
       "width": 1280.00
