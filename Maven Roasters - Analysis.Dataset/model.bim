@@ -2577,6 +2577,75 @@
             }
           }
         ]
+      },
+      {
+        "name": "ROW Sample",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "31bff6f0879d4796a7a85a0cf6e03e67"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Customers Sales",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              },
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "dataType": "double",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "13d30acb-b8c0-49f6-8e29-fc2ccef2e851",
+            "sourceColumn": "[Customers Sales]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Orders",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "0826f0d4-a386-45e7-b6ee-cb2b80c96062",
+            "sourceColumn": "[Orders]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "ae926486-9e5c-4285-8fc9-fe0920fee100",
+        "partitions": [
+          {
+            "name": "ROW Sample",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "    ROW(",
+                "        \"Customers Sales\", [Sales],",
+                "        \"Orders\",",
+                "        SUMX(",
+                "            Sales,",
+                "            Sales[quantity_sold]",
+                "        )",
+                "    )"
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
       }
     ]
   }
