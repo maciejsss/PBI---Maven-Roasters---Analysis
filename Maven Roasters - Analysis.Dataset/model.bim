@@ -67,7 +67,7 @@
         "name": "8a01ce91-484f-4f23-9714-5b8ee4be3890",
         "fromColumn": "transaction_date",
         "fromTable": "Sales",
-        "toColumn": "Transaction_Date",
+        "toColumn": "Date",
         "toTable": "Calendar"
       },
       {
@@ -109,7 +109,7 @@
         "name": "9267c2c2-2812-43bc-b5d8-5009c4dc9ba2",
         "fromColumn": "transaction_date",
         "fromTable": "Food Inventory",
-        "toColumn": "Transaction_Date",
+        "toColumn": "Date",
         "toTable": "Calendar"
       },
       {
@@ -118,6 +118,14 @@
         "fromTable": "Sales",
         "toColumn": "store_id",
         "toTable": "Store"
+      },
+      {
+        "name": "21fc2192-6ee1-4994-a9e1-fa6535ac7a75",
+        "fromColumn": "baked_date",
+        "fromTable": "Food Inventory",
+        "isActive": false,
+        "toColumn": "Date",
+        "toTable": "Calendar"
       }
     ],
     "sourceQueryCulture": "en-US",
@@ -132,7 +140,7 @@
         ],
         "columns": [
           {
-            "name": "Transaction_Date",
+            "name": "Date",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -147,7 +155,7 @@
             "formatString": "Long Date",
             "isKey": true,
             "lineageTag": "1d868383-6eb0-49b1-a1a0-59adb6c740a3",
-            "sourceColumn": "Transaction_Date",
+            "sourceColumn": "Date",
             "summarizeBy": "none"
           },
           {
@@ -285,8 +293,8 @@
               "",
               "    SWITCH(",
               "        TRUE(),",
-              "        MONTH('Calendar'[Transaction_Date]) < 7, \"1H\",",
-              "        MONTH('Calendar'[Transaction_Date]) >= 7, \"2H\",",
+              "        MONTH('Calendar'[Date]) < 7, \"1H\",",
+              "        MONTH('Calendar'[Date]) >= 7, \"2H\",",
               "        \"-\"",
               "    )"
             ],
@@ -339,9 +347,10 @@
                 "let",
                 "    Source = Csv.Document(File.Contents(\"C:\\DANE\\Power BI\\Maven Advanced DAX\\Advanced DAX Data Files\\Calendar.csv\"),[Delimiter=\",\", Columns=10, Encoding=1252, QuoteStyle=QuoteStyle.None]),",
                 "    #\"Promoted Headers\" = Table.PromoteHeaders(Source, [PromoteAllScalars=true]),",
-                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Transaction_Date\", type date}, {\"Date_ID\", Int64.Type}, {\"Week_ID\", Int64.Type}, {\"Week_Desc\", type text}, {\"Month_ID\", Int64.Type}, {\"Month_Name\", type text}, {\"Quarter_ID\", Int64.Type}, {\"Quarter_Name\", type text}, {\"Year_ID\", Int64.Type}, {\"Week_Year\", type text}})",
+                "    #\"Changed Type\" = Table.TransformColumnTypes(#\"Promoted Headers\",{{\"Transaction_Date\", type date}, {\"Date_ID\", Int64.Type}, {\"Week_ID\", Int64.Type}, {\"Week_Desc\", type text}, {\"Month_ID\", Int64.Type}, {\"Month_Name\", type text}, {\"Quarter_ID\", Int64.Type}, {\"Quarter_Name\", type text}, {\"Year_ID\", Int64.Type}, {\"Week_Year\", type text}}),",
+                "    #\"Renamed Columns\" = Table.RenameColumns(#\"Changed Type\",{{\"Transaction_Date\", \"Date\"}})",
                 "in",
-                "    #\"Changed Type\""
+                "    #\"Renamed Columns\""
               ],
               "type": "m"
             }
@@ -517,6 +526,40 @@
             ],
             "formatString": "0",
             "lineageTag": "b7b9a299-96bc-4370-8adc-8ccbd2557fa7",
+            "summarizeBy": "none",
+            "type": "calculated"
+          },
+          {
+            "name": "Sales (High/Low)",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": [
+              "",
+              "    VAR __TotalSales =",
+              "        SUMX(",
+              "            Sales,Sales[quantity_sold] * Sales[unit_price]",
+              "        )",
+              "    VAR __AllCustCnt = ",
+              "        COUNTROWS(Customer)",
+              "    VAR __AvgSales =",
+              "        DIVIDE(",
+              "            __TotalSales,__AllCustCnt",
+              "        )",
+              "    VAR __SalesCust =",
+              "        SUMX(",
+              "            RELATEDTABLE(Sales),    -- force filter context, the same as calculate",
+              "            Sales[quantity_sold] * Sales[unit_price]",
+              "        )",
+              "    RETURN",
+              "        IF(__SalesCust > __AvgSales, \"High\",\"Low\")"
+            ],
+            "isDataTypeInferred": true,
+            "lineageTag": "e05f4624-8800-4f57-b0dc-e07d9387a3bf",
             "summarizeBy": "none",
             "type": "calculated"
           }
@@ -1028,6 +1071,21 @@
             "lineageTag": "07b0bd52-cb92-4368-8d9c-dc108eee7f91",
             "summarizeBy": "none",
             "type": "calculated"
+          },
+          {
+            "name": "Product Group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "expression": "RELATED('Product'[product_group])",
+            "isDataTypeInferred": true,
+            "lineageTag": "cdd00542-3aa1-4a8c-94cd-178d3c08f6c1",
+            "summarizeBy": "none",
+            "type": "calculated"
           }
         ],
         "lineageTag": "f3f15483-f945-4e80-b812-87c5d5503a18",
@@ -1244,6 +1302,28 @@
             "lineageTag": "8dd761cb-bdd5-43ab-91b8-65088ce75fca",
             "sourceColumn": "new_product_yn",
             "summarizeBy": "none"
+          },
+          {
+            "name": "Number of Food Items",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "expression": [
+              "",
+              "    SUMX(",
+              "        RELATEDTABLE('Food Inventory'),",
+              "        'Food Inventory'[quantity_start_of_day]",
+              "    )"
+            ],
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "lineageTag": "9c3153c8-ab66-42ff-adf5-b923df97637f",
+            "summarizeBy": "sum",
+            "type": "calculated"
           }
         ],
         "lineageTag": "de9f93b6-754d-49b5-a7d0-70b166c3e999",
@@ -1605,7 +1685,7 @@
               "    var __SalesPY =",
               "        CALCULATE(",
               "            [Sales],",
-              "            DATEADD('Calendar'[Transaction_Date],-1,YEAR)",
+              "            DATEADD('Calendar'[Date],-1,YEAR)",
               "        )",
               "    var __Result =",
               "        COALESCE(__SalesPY,\"-\")",
@@ -1802,8 +1882,8 @@
               "    CALCULATE(",
               "        [Sales],",
               "        FILTER(",
-              "            ALL('Calendar'[Transaction_Date]),",
-              "            'Calendar'[Transaction_Date] <=  MAX('Calendar'[Transaction_Date])",
+              "            ALL('Calendar'[Date]),",
+              "            'Calendar'[Date] <=  MAX('Calendar'[Date])",
               "        )",
               "    )"
             ],
@@ -1854,7 +1934,7 @@
               "    CALCULATE(",
               "        [Sales],",
               "        ALLEXCEPT(",
-              "            Sales,'Product'[product_group],'Calendar'[Transaction_Date]",
+              "            Sales,'Product'[product_group],'Calendar'[Date]",
               "        )",
               "",
               "    )"
@@ -1875,7 +1955,7 @@
               "",
               "    CALCULATE(",
               "        [Sales],",
-              "        ALLEXCEPT(Sales,Store[store_id],'Calendar'[Transaction_Date],'Product'[product_group],Customer[customer_first-name])",
+              "        ALLEXCEPT(Sales,Store[store_id],'Calendar'[Date],'Product'[product_group],Customer[customer_first-name])",
               "    )"
             ],
             "lineageTag": "20266bb4-e7fc-48aa-8d58-4831cbc39f8b"
@@ -1971,6 +2051,79 @@
             ],
             "formatString": "0.00%;-0.00%;0.00%",
             "lineageTag": "e48e65d5-0ac6-43f5-80a2-43a3f9186059"
+          },
+          {
+            "name": "Wholesale Cost",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    SUMX(",
+              "        Sales,",
+              "        Sales[quantity_sold] * RELATED('Product'[current_cost])",
+              "    )"
+            ],
+            "lineageTag": "f50a49f1-534c-406a-884f-408f131243b8"
+          },
+          {
+            "name": "Quantity (USERELATIONSHIP)",
+            "displayFolder": "Quantity",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        SUM('Food Inventory'[quantity_sold]),",
+              "        USERELATIONSHIP('Food Inventory'[baked_date],'Calendar'[Date])",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "02ca8055-870b-4956-a50b-48c2b728dea5"
+          },
+          {
+            "name": "Number of Employees (CROSSFILTER)",
+            "expression": [
+              "",
+              "    CALCULATE(COUNTROWS(Employee),",
+              "    CROSSFILTER(Sales[staff_id],Employee[staff_id],Both)",
+              "    )",
+              ""
+            ],
+            "formatString": "0",
+            "lineageTag": "913f0222-9073-499d-9cce-88156a8c21bd"
+          },
+          {
+            "name": "Customers who Purchased",
+            "expression": [
+              "",
+              "    CALCULATE(",
+              "        COUNTROWS(Customer),",
+              "        CROSSFILTER(Sales[customer_id],Customer[customer_id],Both",
+              "        )",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "bfed211f-2c87-48e2-bcfa-3bf5243d8384"
+          },
+          {
+            "name": "Average Order Value (CWP)",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    DIVIDE(",
+              "        [Sales],",
+              "        [Customers who Purchased]",
+              "    )"
+            ],
+            "lineageTag": "22306798-9ead-4163-9686-01e9b6aff79f"
           }
         ],
         "partitions": [
@@ -2316,6 +2469,22 @@
             "sourceColumn": "[@Sales]",
             "summarizeBy": "sum",
             "type": "calculatedTableColumn"
+          },
+          {
+            "name": "Product Group",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "string",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "2d4c0490-f21e-4998-a9e9-b6d0dabeaf33",
+            "sourceColumn": "Sales[Product Group]",
+            "summarizeBy": "none",
+            "type": "calculatedTableColumn"
           }
         ],
         "lineageTag": "6fff004f-d402-4209-ba93-7cb463c56fc7",
@@ -2394,7 +2563,7 @@
         ],
         "columns": [
           {
-            "name": "Transaction_Date",
+            "name": "Date",
             "annotations": [
               {
                 "name": "SummarizationSetBy",
@@ -2406,7 +2575,7 @@
             "isDataTypeInferred": true,
             "isNameInferred": true,
             "lineageTag": "fd4e3ae1-5264-4f48-911a-f1f2dda22742",
-            "sourceColumn": "Calendar[Transaction_Date]",
+            "sourceColumn": "Calendar[Date]",
             "summarizeBy": "none",
             "type": "calculatedTableColumn"
           },
@@ -2560,7 +2729,7 @@
                 "            'Food Inventory',",
                 "            'Food Inventory'[quantity_sold] <> 'Food Inventory'[quantity_start_of_day]",
                 "        ),",
-                "        'Calendar'[Transaction_Date],",
+                "        'Calendar'[Date],",
                 "        Store[store_id],",
                 "        'Food Inventory'[quantity_sold],",
                 "        'Food Inventory'[quantity_start_of_day],",
