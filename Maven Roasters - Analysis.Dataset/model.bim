@@ -2914,6 +2914,62 @@
             }
           }
         ]
+      },
+      {
+        "name": "TREATAS Demo",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "d8c4d7328c6840c0bb70dce79b773bb0"
+          }
+        ],
+        "columns": [
+          {
+            "name": "store_id",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "b64638f1-c8c8-47b8-816f-2401e1661f00",
+            "sourceColumn": "Store[store_id]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "bf839a7a-031f-4ca8-976b-c0f2a1e72090",
+        "partitions": [
+          {
+            "name": "TREATAS Demo",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "    var __StoreID = ",
+                "    {",
+                "        \"1\",",
+                "        \"2\",",
+                "        \"3\",",
+                "        \"4\",",
+                "        \"5\",",
+                "        \"6\"",
+                "    }",
+                "",
+                "    RETURN",
+                "        TREATAS(",
+                "            __StoreID,Store[store_id]",
+                "        )",
+                ""
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
       }
     ]
   }
