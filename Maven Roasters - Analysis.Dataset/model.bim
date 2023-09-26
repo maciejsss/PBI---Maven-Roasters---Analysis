@@ -221,8 +221,14 @@
                 "value": "Automatic"
               }
             ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
+              }
+            ],
             "dataType": "string",
             "lineageTag": "2b821a0a-802a-491a-9ecd-edc59f053769",
+            "sortByColumn": "Month_ID",
             "sourceColumn": "Month_Name",
             "summarizeBy": "none"
           },
@@ -259,6 +265,11 @@
               {
                 "name": "SummarizationSetBy",
                 "value": "User"
+              }
+            ],
+            "changedProperties": [
+              {
+                "property": "SortByColumn"
               }
             ],
             "dataType": "int64",
@@ -2124,6 +2135,142 @@
               "    )"
             ],
             "lineageTag": "22306798-9ead-4163-9686-01e9b6aff79f"
+          },
+          {
+            "name": "List Employees (Concatenax)",
+            "expression": [
+              "",
+              "IF (",
+              "    HASONEVALUE ( Employee[staff_id] ),",
+              "    CONCATENATEX (",
+              "        Employee,",
+              "        Employee[first_name] & \" \" & Employee[last_name],",
+              "        \", \",",
+              "        Employee[last_name], DESC",
+              "    ),",
+              "    BLANK()",
+              ")"
+            ],
+            "lineageTag": "a2aa489d-f145-4a66-a416-b9cde77c6e3c"
+          },
+          {
+            "name": "Matrix Title (CONCATENEX)",
+            "expression": [
+              "",
+              "    IF(",
+              "        COUNTROWS(VALUES('Product'[product_category])) > 3,",
+              "        \"Greater then 3 categories.\",",
+              "        \"Category: \" & ",
+              "            CONCATENATEX(",
+              "                VALUES('Product'[product_category]),",
+              "                'Product'[product_category],",
+              "                \", \",",
+              "                'Product'[product_category],",
+              "                ASC",
+              "            )",
+              "    )"
+            ],
+            "lineageTag": "e85b77ee-5992-4390-a151-d1e8537ee58e"
+          },
+          {
+            "name": "Average Sales",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    AVERAGEX(",
+              "        'Calendar',",
+              "        [Sales]",
+              "    )"
+            ],
+            "lineageTag": "f23f49d3-7f76-44f4-877d-e4fd366b9b64"
+          },
+          {
+            "name": "Moving Average",
+            "expression": [
+              "",
+              "    var __LastTransactionDate = ",
+              "        MAX(Sales[transaction_date])",
+              "    var __AverageDays = 30",
+              "    var __PeriodInVisual =",
+              "        FILTER(",
+              "            ALL('Calendar'[Date]),",
+              "            'Calendar'[Date] > __LastTransactionDate - __AverageDays && 'Calendar'[Date] <= __LastTransactionDate",
+              "        )",
+              "    var __Result =",
+              "        CALCULATE(",
+              "            AVERAGEX(",
+              "                'Calendar',",
+              "                [Sales]",
+              "            ),",
+              "            __PeriodInVisual",
+              "        )",
+              "    RETURN",
+              "        __Result"
+            ],
+            "formatString": "0",
+            "lineageTag": "1b59d645-279f-4e62-aacc-1e660127beaf"
+          },
+          {
+            "name": "Average Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    AVERAGEX(",
+              "        'Calendar',",
+              "        [Profit]",
+              "    )"
+            ],
+            "lineageTag": "9eb69b1e-bccc-4371-b4f3-5eba43f03c89"
+          },
+          {
+            "name": "Moving Parameter",
+            "expression": [
+              "",
+              "    SELECTEDVALUE('Moving Parameter'[Value])"
+            ],
+            "formatString": "0",
+            "lineageTag": "de9d25e5-fa05-4ad2-b179-71a4adfe3c66"
+          },
+          {
+            "name": "Moving Profit (Parameter)",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"isGeneralNumber\":true}"
+              }
+            ],
+            "expression": [
+              "",
+              "    var __LastTransactionDate = ",
+              "        MAX(Sales[transaction_date])",
+              "    var __AverageDays = [Moving Parameter]",
+              "    var __PeriodInVisual =",
+              "        FILTER(",
+              "            ALL('Calendar'[Date]),",
+              "            'Calendar'[Date] > __LastTransactionDate - __AverageDays && 'Calendar'[Date] <= __LastTransactionDate",
+              "        )",
+              "    var __Result =",
+              "        CALCULATE(",
+              "            AVERAGEX(",
+              "                'Calendar',",
+              "                [Profit]",
+              "            ),",
+              "            __PeriodInVisual",
+              "        )",
+              "    RETURN",
+              "        __Result"
+            ],
+            "lineageTag": "931295db-dcf4-4b07-82da-235e6ed5ba2e"
           }
         ],
         "partitions": [
@@ -2965,6 +3112,48 @@
                 "            __StoreID,Store[store_id]",
                 "        )",
                 ""
+              ],
+              "type": "calculated"
+            }
+          }
+        ]
+      },
+      {
+        "name": "Moving Parameter",
+        "annotations": [
+          {
+            "name": "PBI_Id",
+            "value": "13d3fdda74a44ea0946b5664f3698f2b"
+          }
+        ],
+        "columns": [
+          {
+            "name": "Value",
+            "annotations": [
+              {
+                "name": "SummarizationSetBy",
+                "value": "Automatic"
+              }
+            ],
+            "dataType": "int64",
+            "formatString": "0",
+            "isDataTypeInferred": true,
+            "isNameInferred": true,
+            "lineageTag": "e2cec03a-b527-4df4-80c3-2b376090c11c",
+            "sourceColumn": "[Value]",
+            "summarizeBy": "sum",
+            "type": "calculatedTableColumn"
+          }
+        ],
+        "lineageTag": "77822e4c-0b6e-41d1-b04b-ebb80ad353dc",
+        "partitions": [
+          {
+            "name": "Moving Parameter",
+            "mode": "import",
+            "source": {
+              "expression": [
+                "",
+                "    GENERATESERIES(7,63,7)"
               ],
               "type": "calculated"
             }
