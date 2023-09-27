@@ -1973,6 +1973,7 @@
           },
           {
             "name": "% of store-level sales",
+            "displayFolder": "Sales",
             "expression": [
               "",
               "    var __StoreLevelSales =",
@@ -2096,6 +2097,7 @@
           },
           {
             "name": "Number of Employees (CROSSFILTER)",
+            "displayFolder": "Counts",
             "expression": [
               "",
               "    CALCULATE(COUNTROWS(Employee),",
@@ -2108,6 +2110,7 @@
           },
           {
             "name": "Customers who Purchased",
+            "displayFolder": "Other",
             "expression": [
               "",
               "    CALCULATE(",
@@ -2127,6 +2130,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Sales",
             "expression": [
               "",
               "    DIVIDE(",
@@ -2138,6 +2142,7 @@
           },
           {
             "name": "List Employees (Concatenax)",
+            "displayFolder": "Other",
             "expression": [
               "",
               "IF (",
@@ -2155,6 +2160,7 @@
           },
           {
             "name": "Matrix Title (CONCATENEX)",
+            "displayFolder": "Other",
             "expression": [
               "",
               "    IF(",
@@ -2180,6 +2186,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Sales",
             "expression": [
               "",
               "    AVERAGEX(",
@@ -2191,6 +2198,7 @@
           },
           {
             "name": "Moving Average",
+            "displayFolder": "Sales",
             "expression": [
               "",
               "    var __LastTransactionDate = ",
@@ -2223,6 +2231,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Profit",
             "expression": [
               "",
               "    AVERAGEX(",
@@ -2234,6 +2243,7 @@
           },
           {
             "name": "Moving Parameter",
+            "displayFolder": "Other",
             "expression": [
               "",
               "    SELECTEDVALUE('Moving Parameter'[Value])"
@@ -2249,6 +2259,7 @@
                 "value": "{\"isGeneralNumber\":true}"
               }
             ],
+            "displayFolder": "Profit",
             "expression": [
               "",
               "    var __LastTransactionDate = ",
@@ -2271,6 +2282,81 @@
               "        __Result"
             ],
             "lineageTag": "931295db-dcf4-4b07-82da-235e6ed5ba2e"
+          },
+          {
+            "name": "Rank Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    IF(",
+              "        HASONEVALUE('Product'[product_category]),    ",
+              "        RANKX(",
+              "            ALL('Product'[product_category]),",
+              "            [Sales]",
+              "        )",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "0aae37f9-db79-400b-aa52-210143ecc0a2"
+          },
+          {
+            "name": "Rounded Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    MROUND([Sales],100000)"
+            ],
+            "formatString": "0",
+            "lineageTag": "a403fcd4-1f8b-402e-b78f-8ccb1a652e83"
+          },
+          {
+            "name": "Rank Rounded Sales",
+            "displayFolder": "Sales",
+            "expression": [
+              "",
+              "    IF(",
+              "        HASONEVALUE('Product'[product_category]),    ",
+              "        RANKX(",
+              "            ALL('Product'[product_category]),",
+              "            [Rounded Sales],",
+              "            ,DESC",
+              "            ,Dense",
+              "        )",
+              "    )"
+            ],
+            "formatString": "0",
+            "lineageTag": "8c911255-3e88-42fe-8443-7bc0dea61e82"
+          },
+          {
+            "name": "Rank Profit",
+            "annotations": [
+              {
+                "name": "PBI_FormatHint",
+                "value": "{\"currencyCulture\":\"en-US\"}"
+              }
+            ],
+            "displayFolder": "Profit",
+            "expression": [
+              "",
+              "    VAR __ProfitRank =",
+              "        IF(",
+              "            HASONEVALUE('Product'[product_category]),",
+              "            RANKX(",
+              "                ALL('Product'[product]),",
+              "                [Sales] - [Cost]",
+              "            )",
+              "        )",
+              "    VAR __Top5 = ",
+              "        IF(",
+              "            __ProfitRank <= 5,",
+              "            [Profit]",
+              "        )",
+              "    RETURN",
+              "        __Top5",
+              ""
+            ],
+            "formatString": "\\$#,0.00;(\\$#,0.00);\\$#,0.00",
+            "lineageTag": "1b8b0c52-b491-4643-af33-4fcfa17a64a7"
           }
         ],
         "partitions": [
