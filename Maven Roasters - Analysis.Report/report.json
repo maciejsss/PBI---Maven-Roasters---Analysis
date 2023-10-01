@@ -1,5 +1,5 @@
 {
-  "config": "{\"version\":\"5.47\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU08\",\"version\":\"5.47\",\"type\":2}},\"activeSectionIndex\":12,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
+  "config": "{\"version\":\"5.47\",\"themeCollection\":{\"baseTheme\":{\"name\":\"CY23SU08\",\"version\":\"5.47\",\"type\":2}},\"activeSectionIndex\":15,\"defaultDrillFilterOtherVisuals\":true,\"slowDataSourceSettings\":{\"isCrossHighlightingDisabled\":false,\"isSlicerSelectionsButtonEnabled\":false,\"isFilterSelectionsButtonEnabled\":false,\"isFieldWellButtonEnabled\":false,\"isApplyAllButtonEnabled\":false},\"linguisticSchemaSyncVersion\":2,\"settings\":{\"useNewFilterPaneExperience\":true,\"allowChangeFilterTypes\":true,\"useStylableVisualContainerHeader\":true,\"queryLimitOption\":6,\"exportDataMode\":1,\"useDefaultAggregateDisplayName\":true},\"objects\":{\"section\":[{\"properties\":{\"verticalAlignment\":{\"expr\":{\"Literal\":{\"Value\":\"'Top'\"}}}}}]}}",
   "layoutOptimization": 0,
   "resourcePackages": [
     {
@@ -61,6 +61,57 @@
           "x": 113.71,
           "y": 25.27,
           "z": 1000.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 16",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection1f690640e01057959105",
+      "ordinal": 15,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"563659fb10e0e278e866\",\"layouts\":[{\"id\":0,\"position\":{\"x\":153,\"y\":9,\"z\":1,\"width\":299,\"height\":112,\"tabOrder\":1}}],\"singleVisual\":{\"visualType\":\"slicer\",\"projections\":{\"Values\":[{\"queryRef\":\"Calendar.Year_ID\",\"active\":true},{\"queryRef\":\"Calendar.Month_ID\",\"active\":true}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Calendar\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year_ID\"},\"Name\":\"Calendar.Year_ID\",\"NativeReferenceName\":\"Year_ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Month_ID\"},\"Name\":\"Calendar.Month_ID\",\"NativeReferenceName\":\"Month_ID\"}]},\"expansionStates\":[{\"roles\":[\"Values\"],\"levels\":[{\"queryRefs\":[\"Calendar.Year_ID\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Year_ID\"}}],\"isPinned\":true},{\"queryRefs\":[\"Calendar.Month_ID\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null,\"children\":[{\"identityValues\":[{\"Literal\":{\"Value\":\"2019L\"}}],\"isToggled\":true},{\"identityValues\":[{\"Literal\":{\"Value\":\"2018L\"}}],\"isToggled\":true}]}}],\"drillFilterOtherVisuals\":true,\"objects\":{\"data\":[{\"properties\":{\"mode\":{\"expr\":{\"Literal\":{\"Value\":\"'Basic'\"}}}}}],\"general\":[{\"properties\":{\"filter\":{\"filter\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Calendar\",\"Type\":0}],\"Where\":[{\"Condition\":{\"In\":{\"Expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year_ID\"}},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Month_ID\"}}],\"Values\":[[{\"Literal\":{\"Value\":\"2018L\"}},{\"Literal\":{\"Value\":\"5L\"}}]]}}}]}}}}]},\"filterExpressionMetadata\":{\"expressions\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Year_ID\"}},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Month_ID\"}}],\"cachedValueItems\":[{\"identities\":[{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Year_ID\"}},\"Right\":{\"Literal\":{\"Value\":\"2018L\"}}}}},{\"scopeId\":{\"Comparison\":{\"ComparisonKind\":0,\"Left\":{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Month_ID\"}},\"Right\":{\"Literal\":{\"Value\":\"5L\"}}}}}],\"valueMap\":{\"0\":\"2018\",\"1\":\"5\"}}]}}}",
+          "filters": "[]",
+          "height": 112.00,
+          "width": 299.00,
+          "x": 153.00,
+          "y": 9.00,
+          "z": 1.00
+        },
+        {
+          "config": "{\"name\":\"a38325601794ae20987d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":65,\"y\":315,\"z\":0,\"width\":596,\"height\":326,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Calendar.Year_ID\",\"active\":true},{\"queryRef\":\"Calendar.Month_Name\",\"active\":true}],\"Values\":[{\"queryRef\":\"_Measures.Sales\"},{\"queryRef\":\"_Measures.Sales YoY Growth\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Calendar\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year_ID\"},\"Name\":\"Calendar.Year_ID\",\"NativeReferenceName\":\"Year_ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Month_Name\"},\"Name\":\"Calendar.Month_Name\",\"NativeReferenceName\":\"Month_Name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Sales\"},\"Name\":\"_Measures.Sales\",\"NativeReferenceName\":\"Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Sales YoY Growth\"},\"Name\":\"_Measures.Sales YoY Growth\",\"NativeReferenceName\":\"Sales YoY Growth\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Calendar.Year_ID\"],\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Year_ID\"}}],\"isPinned\":true},{\"queryRefs\":[\"Calendar.Month_Name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 326.00,
+          "width": 596.00,
+          "x": 65.00,
+          "y": 315.00,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 14",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection3839a781d0eea4e31803",
+      "ordinal": 13,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"4e327781001426653c09\",\"layouts\":[{\"id\":0,\"position\":{\"x\":120.5877268798617,\"y\":79.6542783059637,\"z\":0,\"width\":279.8962834917891,\"height\":279.8962834917891,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Calendar (CALENDARAUTO).Weekend\",\"active\":true}],\"Values\":[{\"queryRef\":\"_Measures.% of Total Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Calendar (CALENDARAUTO)\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Weekend\"},\"Name\":\"Calendar (CALENDARAUTO).Weekend\",\"NativeReferenceName\":\"Weekend\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"% of Total Sales\"},\"Name\":\"_Measures.% of Total Sales\",\"NativeReferenceName\":\"% of Total Sales\"}]},\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 279.90,
+          "width": 279.90,
+          "x": 120.59,
+          "y": 79.65,
+          "z": 0.00
         }
       ],
       "width": 1280.00
@@ -141,6 +192,27 @@
           "width": 639.41,
           "x": 640.59,
           "y": 192.53,
+          "z": 0.00
+        }
+      ],
+      "width": 1280.00
+    },
+    {
+      "config": "{}",
+      "displayName": "Page 15",
+      "displayOption": 1,
+      "filters": "[]",
+      "height": 720.00,
+      "name": "ReportSection58b623bc3c4802c019e5",
+      "ordinal": 14,
+      "visualContainers": [
+        {
+          "config": "{\"name\":\"3cb40824d4db0c50ea1d\",\"layouts\":[{\"id\":0,\"position\":{\"x\":105.09939498703544,\"y\":130.54451166810716,\"z\":0,\"width\":596.3007778738115,\"height\":589.6629213483146,\"tabOrder\":0}}],\"singleVisual\":{\"visualType\":\"pivotTable\",\"projections\":{\"Rows\":[{\"queryRef\":\"Calendar.Year_ID\",\"active\":true},{\"queryRef\":\"Calendar.Quarter_ID\",\"active\":true},{\"queryRef\":\"Calendar.Month_Name\"}],\"Values\":[{\"queryRef\":\"_Measures.Sales\"},{\"queryRef\":\"_Measures.Last Quarter Sales\"}]},\"prototypeQuery\":{\"Version\":2,\"From\":[{\"Name\":\"c\",\"Entity\":\"Calendar\",\"Type\":0},{\"Name\":\"_\",\"Entity\":\"_Measures\",\"Type\":0}],\"Select\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Year_ID\"},\"Name\":\"Calendar.Year_ID\",\"NativeReferenceName\":\"Year_ID\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Month_Name\"},\"Name\":\"Calendar.Month_Name\",\"NativeReferenceName\":\"Month_Name\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Last Quarter Sales\"},\"Name\":\"_Measures.Last Quarter Sales\",\"NativeReferenceName\":\"Last Quarter Sales\"},{\"Measure\":{\"Expression\":{\"SourceRef\":{\"Source\":\"_\"}},\"Property\":\"Sales\"},\"Name\":\"_Measures.Sales\",\"NativeReferenceName\":\"Sales\"},{\"Column\":{\"Expression\":{\"SourceRef\":{\"Source\":\"c\"}},\"Property\":\"Quarter_ID\"},\"Name\":\"Calendar.Quarter_ID\",\"NativeReferenceName\":\"Quarter_ID\"}]},\"expansionStates\":[{\"roles\":[\"Rows\"],\"levels\":[{\"queryRefs\":[\"Calendar.Year_ID\"],\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Year_ID\"}}],\"isPinned\":true},{\"queryRefs\":[\"Calendar.Quarter_ID\"],\"isCollapsed\":true,\"identityKeys\":[{\"Column\":{\"Expression\":{\"SourceRef\":{\"Entity\":\"Calendar\"}},\"Property\":\"Quarter_ID\"}}],\"isPinned\":true},{\"queryRefs\":[\"Calendar.Month_Name\"],\"isCollapsed\":true,\"isPinned\":true}],\"root\":{\"identityValues\":null}}],\"drillFilterOtherVisuals\":true}}",
+          "filters": "[]",
+          "height": 589.66,
+          "width": 596.30,
+          "x": 105.10,
+          "y": 130.54,
           "z": 0.00
         }
       ],
